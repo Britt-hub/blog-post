@@ -15,6 +15,10 @@
     color: #1abc9c !important;
 }
 
+#btn-publish {
+    background-color: rgba(47, 47, 145, 0.575);
+}
+
 .footer-padding {
 	padding-bottom: 60px;
 }

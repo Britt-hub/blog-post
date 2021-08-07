@@ -54,6 +54,15 @@ app.get("/home", function (req, res) {
   res.render("home");
 });
 
+// The Compose Page
+app.get("/compose", function (req, res) {
+  res.render("compose")
+});
+
+app.post("/compose", function (req, res) {
+  console.log(req.body.postTitle);
+});
+
 
 app.listen(3000, function () {
   console.log("Server started on port Andre 3000");
