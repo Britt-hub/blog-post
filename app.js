@@ -1,4 +1,3 @@
-//jshint esversion:6
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -14,6 +13,8 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+
+
 
 app.get("/", function (req, res) {
   // res.render("home", {homeContent: homeStartingContent});
@@ -35,11 +36,24 @@ app.get("/home", function (req, res) {
                     //{key: value} this is the above 
 
 });
+// The About Route
+app.get("/about", function (req, res) {
+  res.render("about", { aboutSection: aboutContent })
+});
+// The Contact Route
+app.get("/contact", function (req, res) {
+  res.render("contact", { letsTalk: contactContent})
+})
 
+app.get('/contact', (req, res) => {
+  res.render('contact');
+ });
 
+// The Home Route
 app.get("/home", function (req, res) {
   res.render("home");
 });
+
 
 app.listen(3000, function () {
   console.log("Server started on port Andre 3000");
