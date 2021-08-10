@@ -9,6 +9,44 @@ const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rho
 
 const app = express();
 
+// var post = [];
+// $ins = $("#postTitle, #postBlog"),
+//   counter = {
+//     postTitle: {},
+//     postBlog: {},  
+//   };
+
+// $("add").click(function () {
+//   var obj = {},
+//     valid = true;
+//   $ins.each(function () {
+//     var val = this.value.trim();
+//     if (val) {
+//     } else {
+//       var save = this.previousSibling.nodeValue.trim();
+//       alert(save.substring(0, save.length - 1) + "cannot be blank");
+//       this.focus();
+//       valid = false;
+//       return false;
+//     }
+//   });
+//   if (valid) {
+//     list.push(obj);
+//     $ins.val("");
+
+//     $.each(obj, function (key, value) {
+//       var count = counter[key][value] || 0;
+//       counter[key][value] = count + 1;
+//     });
+//   }
+// });
+// $('#print').click(function () {
+//   $('pre').text(JSON.stringify(post) + '\n\n');
+//   $('pre').append(document.createTextNode(JSON.stringify(counter)));
+// });
+
+
+
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -60,7 +98,12 @@ app.get("/compose", function (req, res) {
 });
 
 app.post("/compose", function (req, res) {
-  console.log(req.body.postTitle);
+
+  const post = {
+    title: req.body.postTitle,
+    content: req.body.postBody
+  };
+
 });
 
 
