@@ -9,69 +9,20 @@ const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rho
 
 const app = express();
 
-// var post = [];
-// $ins = $("#postTitle, #postBlog"),
-//   counter = {
-//     postTitle: {},
-//     postBlog: {},  
-//   };
-
-// $("add").click(function () {
-//   var obj = {},
-//     valid = true;
-//   $ins.each(function () {
-//     var val = this.value.trim();
-//     if (val) {
-//     } else {
-//       var save = this.previousSibling.nodeValue.trim();
-//       alert(save.substring(0, save.length - 1) + "cannot be blank");
-//       this.focus();
-//       valid = false;
-//       return false;
-//     }
-//   });
-//   if (valid) {
-//     list.push(obj);
-//     $ins.val("");
-
-//     $.each(obj, function (key, value) {
-//       var count = counter[key][value] || 0;
-//       counter[key][value] = count + 1;
-//     });
-//   }
-// });
-// $('#print').click(function () {
-//   $('pre').text(JSON.stringify(post) + '\n\n');
-//   $('pre').append(document.createTextNode(JSON.stringify(counter)));
-// });
-
-
-
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-
-
-app.get("/", function (req, res) {
-  // res.render("home", {homeContent: homeStartingContent});
-});
-
-app.post("/", function (req, res) {
-
-  // res.render('blog', { blogTitle: day, newListItems: items });
-
-})
-
-
-
-
+let posts = [];
 
 //this will render the "homeStartingContent" to the home page
 app.get("/home", function (req, res) {
-  res.render("home", { homeContent: homeStartingContent });
-                    //{key: value} this is the above 
+  res.render("home", {
+    homeContent: homeStartingContent,
+    posts: posts,
+  });
+  //{key: value} this is the above 
 
 });
 // The About Route
@@ -80,12 +31,12 @@ app.get("/about", function (req, res) {
 });
 // The Contact Route
 app.get("/contact", function (req, res) {
-  res.render("contact", { letsTalk: contactContent})
+  res.render("contact", { letsTalk: contactContent })
 })
 
 app.get('/contact', (req, res) => {
   res.render('contact');
- });
+});
 
 // The Home Route
 app.get("/home", function (req, res) {
@@ -98,12 +49,16 @@ app.get("/compose", function (req, res) {
 });
 
 app.post("/compose", function (req, res) {
-
+  // creating an oject
+  //const object = {}
+  //key: value
   const post = {
     title: req.body.postTitle,
-    content: req.body.postBody
+    content: req.body.postBody,
   };
-
+  posts.push(post);
+  res.redirect("/home");
+  console.log(posts)
 });
 
 
